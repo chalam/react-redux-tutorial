@@ -32,7 +32,7 @@ class Tally extends React.Component {
 }
 
 Tally.propTypes = {
-  pair: React.PropTypes.array,
+  pair: React.PropTypes.object,
   tally: React.PropTypes.object,
 };
 

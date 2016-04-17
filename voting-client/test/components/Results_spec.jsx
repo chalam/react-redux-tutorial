@@ -44,10 +44,11 @@ describe('Results', () => {
   });
 
   it('renders the winner when there is one', () => {
+    const pair = List.of('Trainspotting', '28 Days Later');
     const component = renderIntoDocument(
       <Results
         winner="Trainspotting"
-        pair={['Trainspotting', '28 Days Later']}
+        pair={pair}
         tally={new Map()}
       />
     );

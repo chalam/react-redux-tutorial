@@ -30,9 +30,9 @@ export class Results extends React.Component {
 }
 
 Results.propTypes = {
-  pair: React.PropTypes.array,
+  pair: React.PropTypes.object,
   tally: React.PropTypes.object,
-  next: React.PropTypes.func.isRequired,
+  next: React.PropTypes.func,
   winner: React.PropTypes.string,
 };
 

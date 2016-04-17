@@ -11,8 +11,9 @@ import { expect } from 'chai';
 
 describe('Voting', () => {
   it('renders a pair of buttons', () => {
+    const pair = List.of('Trainspotting', '28 Days Later');
     const component = renderIntoDocument(
-      <Voting pair={['Trainspotting', '28 Days Later']} />
+      <Voting pair={pair} />
     );
     const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
 
@@ -24,10 +25,10 @@ describe('Voting', () => {
   it('invokes callback when a button is clicked', () => {
     let votedWith;
     const vote = (entry) => (votedWith = entry);
-
+    const pair = List.of('Trainspotting', '28 Days Later');
     const component = renderIntoDocument(
       <Voting
-        pair={['Trainspotting', '28 Days Later']}
+        pair={pair}
         vote={vote}
       />
     );
@@ -38,9 +39,10 @@ describe('Voting', () => {
   });
 
   it('disables buttons when user has voted', () => {
+    const pair = List.of('Trainspotting', '28 Days Later');
     const component = renderIntoDocument(
       <Voting
-        pair={['Trainspotting', '28 Days Later']}
+        pair={pair}
         hasVoted="Trainspotting"
       />
     );
@@ -52,9 +54,10 @@ describe('Voting', () => {
   });
 
   it('adds label to the voted entry', () => {
+    const pair = List.of('Trainspotting', '28 Days Later');
     const component = renderIntoDocument(
       <Voting
-        pair={['Trainspotting', '28 Days Later']}
+        pair={pair}
         hasVoted="Trainspotting"
       />
     );
@@ -73,47 +76,5 @@ describe('Voting', () => {
     const winner = ReactDOM.findDOMNode(component.refs.winner);
     expect(winner).to.be.ok;
     expect(winner.textContent).to.contain('Trainspotting');
-  });
-
-  it('renders as a pure component', () => {
-    const pair = ['Trainspotting', '28 Days Later'];
-    const container = document.createElement('div');
-    let component = ReactDOM.render(
-      <Voting pair={pair} />,
-      container
-    );
-
-    let firstButton = scryRenderedDOMComponentsWithTag(component, 'button')[0];
-    expect(firstButton.textContent).to.equal('Trainspotting');
-
-    // Data should be immutable so this won't trigger a re-render
-    pair[0] = 'Sunshine';
-    component = ReactDOM.render(
-      <Voting pair={pair} />,
-      container
-    );
-    firstButton = scryRenderedDOMComponentsWithTag(component, 'button')[0];
-    expect(firstButton.textContent).to.equal('Trainspotting');
-  });
-
-  it('does update DOM when prop changes', () => {
-    const pair = List.of('Trainspotting', '28 Days Later');
-    const container = document.createElement('div');
-    let component = ReactDOM.render(
-      <Voting pair={pair} />,
-      container
-    );
-
-    let firstButton = scryRenderedDOMComponentsWithTag(component, 'button')[0];
-    expect(firstButton.textContent).to.equal('Trainspotting');
-
-    // Replacing the data however will trigger a re-render
-    const newPair = pair.set(0, 'Sunshine');
-    component = ReactDOM.render(
-      <Voting pair={newPair} />,
-      container
-    );
-    firstButton = scryRenderedDOMComponentsWithTag(component, 'button')[0];
-    expect(firstButton.textContent).to.equal('Sunshine');
   });
 });
