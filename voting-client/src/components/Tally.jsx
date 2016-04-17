@@ -1,5 +1,6 @@
 import React from 'react/lib/React';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class Tally extends React.Component {
   constructor() {
@@ -32,8 +33,8 @@ class Tally extends React.Component {
 }
 
 Tally.propTypes = {
-  pair: React.PropTypes.object,
-  tally: React.PropTypes.object,
+  pair: ImmutablePropTypes.list,
+  tally: ImmutablePropTypes.map,
 };
 
 export default Tally;
