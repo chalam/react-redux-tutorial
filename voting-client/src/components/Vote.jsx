@@ -1,5 +1,6 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class Vote extends React.Component {
   constructor() {
@@ -33,7 +34,7 @@ class Vote extends React.Component {
 }
 
 Vote.propTypes = {
-  pair: React.PropTypes.object,
+  pair: ImmutablePropTypes.list,
   hasVoted: React.PropTypes.string,
   vote: React.PropTypes.func,
 };

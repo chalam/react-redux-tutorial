@@ -1,5 +1,6 @@
 import React from 'react/lib/React';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import Winner from './Winner';
 import Tally from './Tally';
@@ -30,8 +31,8 @@ export class Results extends React.Component {
 }
 
 Results.propTypes = {
-  pair: React.PropTypes.object,
-  tally: React.PropTypes.object,
+  pair: ImmutablePropTypes.list,
+  tally: ImmutablePropTypes.map,
   next: React.PropTypes.func,
   winner: React.PropTypes.string,
 };
