@@ -32,6 +32,7 @@ describe('reducer', () => {
     expect(nextState).to.equal(fromJS({
       vote: {
         pair: ['Trainspotting', '28 Days Later'],
+        round: 1,
       },
       entries: [],
     }));
