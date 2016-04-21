@@ -36,10 +36,16 @@ export function next(state) {
   if (entries.size === 1) {
     return state.remove('vote')
             .remove('entries')
+            .remove('round')
             .set('winner', entries.first());
   }
+  let round = state.getIn(['vote', 'round'], 0);
+  ++round;
   return state.merge({
-    vote: new Map({ pair: entries.take(2) }),
+    vote: new Map({
+      pair: entries.take(2),
+      round,
+    }),
     entries: entries.skip(2),
   });
 }
